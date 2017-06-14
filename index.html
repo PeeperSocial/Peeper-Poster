@@ -23,10 +23,13 @@
             }
 
             function renderPage(md) {
-                return '<html><head><link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" ' +
-                        'integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"><style>body{margin: 0 auto; max-width: 800px;}</style></head><body>' +
-                        '<div class="pure-g"><div class="pure-u-1">' +
-                        markdown.toHTML(md) + '</div></div></body></html>';
+                return '<html><head><link rel="stylesheet" href="/ipfs/QmQ5j5PD8yroiMjCPLmVuAQC8JWAnBAfbZnThnV36Zs397"><style>' +
+                        'footer {padding: 3em 0; text-align: center; font-size: 1.4em; border-top: 1px solid #e1e1e1;}' +
+                        'a:hover { color: #222; border-bottom-color: #555}' +
+                        'a { color: #aeaeae; border-bottom: 1px dotted #aeaeae; text-decoration: none; }' +
+                        '</style></head><body><article class="typesettings golden">' +
+                        markdown.toHTML(md) +
+                        '</article><footer><a href="https://gitlab.com/stavros/IPFessay">Publish your own essay with IPFessay</a></footer></body></html>'
             }
 
             function publish() {
@@ -92,6 +95,20 @@ daemon in writable mode*, and you need to **[allow
 CORS](https://github.com/ipfs/js-ipfs-api#cors)**! If you don't,
 IPFessay unfortunately
 *can't publish files*.
+
+# Markdown
+
+> Many Markdown features are supported.
+
+## Headers
+
+* Lists.
+* More lists.
+
+Some plain text.
+
+1. Numbered lists.
+2. More numbers.
 </textarea>
                         <button onclick="publish()" class="button-publish pure-button">Publish!</button>
                         <span id="published-link"></span>

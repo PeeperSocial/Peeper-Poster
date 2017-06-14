@@ -10,4 +10,4 @@ As long as IPFS is up, you'll be able to use IPFessay to publish texts to IPFS.
 
 To use IPFessay, just get it from IPFS:
 
-[/ipfs/QmdW14pvyVPdgmr2utUHQjMHD1yrNmPZdrTYLo7EsfogxY](https://ipfs.io/ipfs/QmdW14pvyVPdgmr2utUHQjMHD1yrNmPZdrTYLo7EsfogxY)
+[/ipfs/QmSSxSisEfnBHww4Ry58n6z36sLMczt1nxfDWYHCReBdmz](https://ipfs.io/ipfs/QmSSxSisEfnBHww4Ry58n6z36sLMczt1nxfDWYHCReBdmz)
