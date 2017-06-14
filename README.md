@@ -24,7 +24,7 @@ You can see a (non-functional) version of IPFessay on ipfs.io:
 
 And a sample essay:
 
-[/ipfs/QmWL1ZC2uAe2SLeiJK8Bj6P7RSsueBmhMZgjFPg87T1gDa](https://ipfs.io/ipfs/QmWL1ZC2uAe2SLeiJK8Bj6P7RSsueBmhMZgjFPg87T1gDa)
+[/ipfs/QmNj4f9p47zYuq16vk57btNtR2KofbTfP1Cypqc5Gi8CUj](https://ipfs.io/ipfs/QmNj4f9p47zYuq16vk57btNtR2KofbTfP1Cypqc5Gi8CUj)
 
 
 Contributing
