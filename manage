@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+
+import re
+import subprocess
+
+import click
+
+
+@click.group(context_settings={"help_option_names": ["-h", "--help"]})
+@click.version_option(
+    prog_name="manage",
+    message="%(prog)s %(version)s: Manage all the things."
+)
+def cli():
+    pass
+
+
+@cli.command()
+def release():
+    """Prepare a release."""
+    readme = open("README.md").read()
+    child = subprocess.Popen(["ipfs", "add", "-Q", "-r", "ipfessay"], stdout=subprocess.PIPE)
+    new_hash = child.stdout.read().decode("utf8").strip()
+    new_readme = re.sub("/ipfs/[a-zA-Z0-9]*?([\]\)])", "/ipfs/%s\\1" % new_hash, readme, count=4)
+    open("README.md", "w").write(new_readme)
+    print("Released %s." % new_hash)
+
+
+def main():
+    return cli(obj={})
+
+
+if __name__ == "__main__":
+    main()
