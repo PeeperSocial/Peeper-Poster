@@ -4,7 +4,6 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>IPFessay - Easily publish uncensorable essays</title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
@@ -31,13 +30,14 @@
             }
 
             function renderPage(md) {
-                return '<html><head><link rel="stylesheet" href="/ipfs/QmQ5j5PD8yroiMjCPLmVuAQC8JWAnBAfbZnThnV36Zs397"><style>' +
-                        'footer {padding: 3em 0; text-align: center; font-size: 1.4em; border-top: 1px solid #e1e1e1;}' +
-                        'a:hover { color: #222; border-bottom-color: #555}' +
-                        'a { color: #aeaeae; border-bottom: 1px dotted #aeaeae; text-decoration: none; }' +
-                        '</style></head><body><article class="typesettings golden">' +
-                        markdown.toHTML(md) +
-                        '</article><footer><a href="https://gitlab.com/stavros/IPFessay">Publish your own essay with IPFessay</a></footer></body></html>'
+                return '<html><head><meta name="viewport" content="width=device-width, initial-scale=1">' +
+                       '<link rel="stylesheet" href="/ipfs/QmQ5j5PD8yroiMjCPLmVuAQC8JWAnBAfbZnThnV36Zs397"><style>' +
+                       'footer {padding: 3em 0; text-align: center; font-size: 1.4em; border-top: 1px solid #e1e1e1;}' +
+                       'a:hover { color: #222; border-bottom-color: #555}' +
+                       'a { color: #aeaeae; border-bottom: 1px dotted #aeaeae; text-decoration: none; }' +
+                       '</style></head><body><article class="typesettings golden">' +
+                       markdown.toHTML(md) +
+                       '</article><footer><a href="https://gitlab.com/stavros/IPFessay">Publish your own essay with IPFessay</a></footer></body></html>'
             }
 
             function publish() {
