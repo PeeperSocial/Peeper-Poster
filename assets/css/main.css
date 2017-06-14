@@ -38,10 +38,15 @@ The content `<div>` is where all your content goes.
 
 .footer {
     margin: 0;
-    color: #333;
+    color: #aaa;
     text-align: center;
     padding: 2.5em 2em 0;
     border-top: 1px solid #eee;
+}
+
+a {
+    color: #7abbed;
+    text-decoration: none;
 }
 
 .header {
@@ -121,4 +126,8 @@ section {
 .button-publish {
     background: rgb(28, 184, 65);
     font-size:  125%;
+}
+
+#published-link {
+    margin-left: 1em;
 }
