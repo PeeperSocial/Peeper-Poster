@@ -25,3 +25,29 @@ You can see a (non-functional) version of IPFessay on ipfs.io:
 And a sample essay:
 
 [/ipfs/QmWL1ZC2uAe2SLeiJK8Bj6P7RSsueBmhMZgjFPg87T1gDa](https://ipfs.io/ipfs/QmWL1ZC2uAe2SLeiJK8Bj6P7RSsueBmhMZgjFPg87T1gDa)
+
+
+Contributing
+------------
+
+### Pinning
+
+If you have a local IPFS daemon, please feel free to help out by pinning
+a version of IPFessay. You can very easily do this by running:
+
+~~~
+ipfs pin add Qmd9zM3c5xHcLVSi6Fspb1zy2rGR492Cs819YKqZCCMFye
+~~~
+
+Which will make you a host of IPFessay and help make it faster and more
+resilient.
+
+
+### Code contributions
+
+Please feel free to open an issue or a merge request if you find something that
+can be improved or have any suggestions.
+
+Thanks!
+
+-- Stavros
