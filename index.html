@@ -93,7 +93,9 @@ will be permanently uploaded to [IPFS](https://ipfs.io/), where it
 can never be changed or deleted.
 
 **NOTE**: To use IPFessay, you *need to be running a local IPFS
-daemon in writable mode*! If you aren't, IPFessay unfortunately
+daemon in writable mode*, and you need to **[allow
+CORS](https://github.com/ipfs/js-ipfs-api#cors)**! If you don't,
+IPFessay unfortunately
 *can't publish files*.
 </textarea>
                         <button onclick="publish()" class="button-publish pure-button">Publish!</button>
