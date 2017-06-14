@@ -8,5 +8,6 @@ software or servers.
 
 As long as IPFS is up, you'll be able to use IPFessay to publish texts to IPFS.
 
-To use IPFessay, just get it from IPFS (a link to the latest release will be
-posted here as soon as one is made).
+To use IPFessay, just get it from IPFS:
+
+[/ipfs/QmP5GkTgijxoWD3BHu4Swo5UiLHGpyDRqz16nLkdw8ivVp](/ipfs/QmP5GkTgijxoWD3BHu4Swo5UiLHGpyDRqz16nLkdw8ivVp)
