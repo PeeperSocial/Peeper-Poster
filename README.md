@@ -16,11 +16,11 @@ To use IPFessay, you need to do a few things, unfortunately:
   unfortunate necessity).
 * Visit the following link:
 
-[/ipfs/QmZcBqWaD8DWiqs4hz6S1Za5E7j5NafikVxp6LyqtQ1w4v](http://localhost:8080/ipfs/QmZcBqWaD8DWiqs4hz6S1Za5E7j5NafikVxp6LyqtQ1w4v)
+[/ipfs/QmT58gpKEhdpRkVzgRMU8PWoWqwcZnZWRZrNnkEnqcK8G9](http://localhost:8080/ipfs/QmT58gpKEhdpRkVzgRMU8PWoWqwcZnZWRZrNnkEnqcK8G9)
 
 You can see a (non-functional) version of IPFessay on ipfs.io:
 
-[/ipfs/QmZcBqWaD8DWiqs4hz6S1Za5E7j5NafikVxp6LyqtQ1w4v](https://ipfs.io/ipfs/QmZcBqWaD8DWiqs4hz6S1Za5E7j5NafikVxp6LyqtQ1w4v)
+[/ipfs/QmT58gpKEhdpRkVzgRMU8PWoWqwcZnZWRZrNnkEnqcK8G9](https://ipfs.io/ipfs/QmT58gpKEhdpRkVzgRMU8PWoWqwcZnZWRZrNnkEnqcK8G9)
 
 And a sample essay:
 
@@ -36,7 +36,7 @@ If you have a local IPFS daemon, please feel free to help out by pinning
 a version of IPFessay. You can very easily do this by running:
 
 ~~~
-ipfs pin add QmZcBqWaD8DWiqs4hz6S1Za5E7j5NafikVxp6LyqtQ1w4v
+ipfs pin add QmT58gpKEhdpRkVzgRMU8PWoWqwcZnZWRZrNnkEnqcK8G9
 ~~~
 
 Which will make you a host of IPFessay and help make it faster and more
