@@ -24,7 +24,7 @@ def release():
     readme = re.sub("/ipfs/[a-zA-Z0-9]*?([\]\)])", r"/ipfs/%s\1" % new_hash, readme, count=4)
     readme = re.sub("(ipfs pin add) [a-zA-Z0-9]+", r"\1 %s" % new_hash, readme)
     open("README.md", "w").write(readme)
-    print("Released %s." % new_hash)
+    print("Released %s" % new_hash)
 
 
 def main():

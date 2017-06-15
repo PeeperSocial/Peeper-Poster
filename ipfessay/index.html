@@ -16,9 +16,9 @@
         <meta name="theme-color" content="#5fcbcf">
 
         <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
         <link rel="stylesheet" href="assets/css/main.css">
-        <script src="assets/js/markdown.js"></script>
+        <link rel="stylesheet" href="assets/css/simplemde.min.css">
+        <script src="assets/js/simplemde.min.js"></script>
 
         <script>
             $ = function (id) { return document.getElementById(id); };
@@ -36,7 +36,7 @@
                        'a:hover { color: #222; border-bottom-color: #555}' +
                        'a { color: #aeaeae; border-bottom: 1px dotted #aeaeae; text-decoration: none; }' +
                        '</style></head><body><article class="typesettings golden">' +
-                       markdown.toHTML(md) +
+                       simplemde.markdown(md) +
                        '</article><footer><a href="https://gitlab.com/stavros/IPFessay">Publish your own essay with IPFessay</a></footer></body></html>'
             }
 
@@ -51,58 +51,30 @@
                 req.send(f);
             }
 
-            function Editor(input, preview) {
-                var editorTimeout = 0;
-
-                function updateText() {
-                    preview.innerHTML = markdown.toHTML(input.value);
-                    $("published-link").innerHTML = "";
-                }
-
-                this.update = function (now) {
-                    clearTimeout(editorTimeout);
-                    editorTimeout = setTimeout(updateText, 500);
-                };
-                input.editor = this;
-                updateText();
+            window.onload = function() {
+                simplemde = new SimpleMDE({ autofocus: true, element: document.getElementById("text-input") });
             }
-
-            function init() {
-                new Editor($("text-input"), $("preview"));
-            }
-            window.onload = init;
         </script>
     </head>
     <body>
         <div id="layout">
             <div id="main">
                 <div class="header">
-                    <h1>IPFessay</h1>
+                    <h1><img src="assets/images/logo.svg" width=40 /> IPFessay</h1>
                     <h2>Easily publish uncensorable essays.</h2>
                 </div>
 
                 <div class="content pure-g">
-                    <div class="pure-u-1 pure-u-lg-1-2 col">
-                        <section>
-                        <h1>Write</h1>
-
-                        <!-- Add your site or application content here -->
+                    <div class="pure-u-1">
+                        <br />
                         <textarea id="text-input" style="width: 100%;" oninput="this.editor.update()" rows="15" cols="60">
 # Your essay
 
-Write your essay on the text box on the left of the page, using
-[Markdown](https://daringfireball.net/projects/markdown/syntax),
-and it will automatically be prettified and shown on the right.
+Write your essay in this text box, using [Markdown syntax](https://daringfireball.net/projects/markdown/syntax), and use the toolbar at the top to compose or to preview how it will look.
 
-When you've finished writing, press "Publish" and your essay
-will be permanently uploaded to [IPFS](https://ipfs.io/), where it
-can never be changed or deleted.
+When you've finished writing, press the "Publish" button at the bottom of this page, and your essay will be permanently uploaded to [IPFS](https://ipfs.io/), where it can never be changed or deleted.
 
-**NOTE**: To use IPFessay, you *need to be running a local IPFS
-daemon in writable mode*, and you need to **[allow
-CORS](https://github.com/ipfs/js-ipfs-api#cors)**! If you don't,
-IPFessay unfortunately
-*can't publish files*.
+**NOTE**: To use IPFessay, you *need to be running a local IPFS daemon in writable mode*, and you need to **[allow CORS](https://github.com/ipfs/js-ipfs-api#cors)**! If you don't, IPFessay unfortunately *can't publish files*.
 
 # Markdown
 
@@ -117,16 +89,14 @@ Some plain text.
 
 1. Numbered lists.
 2. More numbers.
+
+~~~
+Code blocks
+    are supported too.
+~~~
 </textarea>
                         <button onclick="publish()" class="button-publish pure-button">Publish!</button>
                         <span id="published-link"></span>
-                    </section>
-                    </div>
-
-                    <div class="pure-u-1 pure-u-lg-1-2 col">
-                    <section>
-                        <div id="preview"></div>
-                    </section>
                     </div>
                 </div>
 
