@@ -16,11 +16,11 @@ To use IPFessay, you need to do a few things, unfortunately:
   unfortunate necessity).
 * Visit the following link:
 
-[/ipfs/QmeDgLPwjowDThu3z9QoEvgPo7Cc7GJu79TYki5wYQBXvK](http://localhost:8080/ipfs/QmeDgLPwjowDThu3z9QoEvgPo7Cc7GJu79TYki5wYQBXvK)
+[/ipfs/QmZ83CCzb3duRTy3XLV8nWFhAiAAgGKcx7NPTFdBE1iaoN](http://localhost:8080/ipfs/QmZ83CCzb3duRTy3XLV8nWFhAiAAgGKcx7NPTFdBE1iaoN)
 
 You can see a (non-functional) version of IPFessay on ipfs.io:
 
-[/ipfs/QmeDgLPwjowDThu3z9QoEvgPo7Cc7GJu79TYki5wYQBXvK](https://ipfs.io/ipfs/QmeDgLPwjowDThu3z9QoEvgPo7Cc7GJu79TYki5wYQBXvK)
+[/ipfs/QmZ83CCzb3duRTy3XLV8nWFhAiAAgGKcx7NPTFdBE1iaoN](https://ipfs.io/ipfs/QmZ83CCzb3duRTy3XLV8nWFhAiAAgGKcx7NPTFdBE1iaoN)
 
 And a sample essay:
 

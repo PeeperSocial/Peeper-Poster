@@ -1,3 +1,7 @@
+html {
+    font-family: Verdana, Geneva, sans-serif;
+}
+
 body {
     color: #666;
 }
@@ -115,6 +119,33 @@ Hides the menu at `48em`, but modify this based on your app's needs.
 
 section {
     margin: 1em;
+}
+
+button {
+    overflow: visible;
+    text-transform: none;
+    font: inherit;
+    margin: 0;
+}
+
+.pure-button {
+    border: transparent;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    line-height: normal;
+    padding: .5em 1em;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    zoom: 1;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .button-publish {
