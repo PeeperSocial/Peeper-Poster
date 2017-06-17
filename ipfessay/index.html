@@ -42,7 +42,9 @@
             function publish() {
                 // Render the Markdown essay and post it to the IPFS daemon.
                 var f = new FormData();
-                f.append("path", new Blob([renderPage($("text-input").value)], {type: "text/html"}), "path");
+                simplemde.codemirror.save();
+                var md = $("text-input").value;
+                f.append("path", new Blob([renderPage(md)], {type: "text/html"}), "path");
 
                 var req = new XMLHttpRequest();
                 req.addEventListener("load", publishCallback);
@@ -54,7 +56,6 @@
                 simplemde = new SimpleMDE({
                     autofocus: true,
                     element: document.getElementById("text-input"),
-                    forceSync: true,
                     toolbar: [
                         "bold", "italic", "heading", "|",
                         "quote", "unordered-list", "ordered-list", "|",
