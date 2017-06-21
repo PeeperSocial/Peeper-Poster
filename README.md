@@ -24,7 +24,7 @@ You can see a (non-functional) version of IPFessay on ipfs.io:
 
 And a sample essay:
 
-[/ipfs/QmNj4f9p47zYuq16vk57btNtR2KofbTfP1Cypqc5Gi8CUj](https://ipfs.io/ipfs/QmNj4f9p47zYuq16vk57btNtR2KofbTfP1Cypqc5Gi8CUj)
+[/ipfs/QmWFSuFDaApxK6DaBzEXdSXhb325fQY1hHn7Jc32DS77UK](https://ipfs.io/ipfs/QmWFSuFDaApxK6DaBzEXdSXhb325fQY1hHn7Jc32DS77UK)
 
 The above links are immutable, ie they will always point to the same version of
 IPFessay, even if there is a later version available.
