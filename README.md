@@ -10,7 +10,8 @@ As long as IPFS is up, you'll be able to use IPFessay to publish texts to IPFS.
 
 To use IPFessay, you need to do a few things, unfortunately:
 
-* [Install IPFS](https://ipfs.io/docs/install/).
+* [Install IPFS](https://ipfs.io/docs/install/) (just copy the binary somewhere
+  and run it).
 * Launch the daemon in writable mode (`ipfs daemon --writable`).
 * Add the [CORS headers](https://github.com/ipfs/js-ipfs-api#cors) (an
   unfortunate necessity).
