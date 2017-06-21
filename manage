@@ -25,6 +25,10 @@ def release():
     readme = re.sub("(ipfs pin add) [a-zA-Z0-9]+", r"\1 %s" % new_hash, readme)
     open("README.md", "w").write(readme)
     print("Released %s" % new_hash)
+    child = subprocess.Popen(["ipfs", "name", "publish", "--key=ipfessay", new_hash], stdout=subprocess.PIPE)
+    ipns_out = child.stdout.read().decode("utf8").strip()
+    ipns = re.search("(\w+)+\:", ipns_out).groups(1)[0]
+    print("Linked IPNS name: %s" % ipns)
 
 
 def main():

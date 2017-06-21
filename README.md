@@ -16,15 +16,22 @@ To use IPFessay, you need to do a few things, unfortunately:
   unfortunate necessity).
 * Visit the following link:
 
-[/ipfs/QmXhERuCRHqosaGzc5FXwj3voEGVXiwepTe8AnxFDTyB88](http://localhost:8080/ipfs/QmXhERuCRHqosaGzc5FXwj3voEGVXiwepTe8AnxFDTyB88)
+[/ipfs/QmUMCB1ECicbTLrhyJ2y77Yo99qnRjGysVDqj341e5AAyG](http://localhost:8080/ipfs/QmUMCB1ECicbTLrhyJ2y77Yo99qnRjGysVDqj341e5AAyG)
 
 You can see a (non-functional) version of IPFessay on ipfs.io:
 
-[/ipfs/QmXhERuCRHqosaGzc5FXwj3voEGVXiwepTe8AnxFDTyB88](https://ipfs.io/ipfs/QmXhERuCRHqosaGzc5FXwj3voEGVXiwepTe8AnxFDTyB88)
+[/ipfs/QmUMCB1ECicbTLrhyJ2y77Yo99qnRjGysVDqj341e5AAyG](https://ipfs.io/ipfs/QmUMCB1ECicbTLrhyJ2y77Yo99qnRjGysVDqj341e5AAyG)
 
 And a sample essay:
 
 [/ipfs/QmNj4f9p47zYuq16vk57btNtR2KofbTfP1Cypqc5Gi8CUj](https://ipfs.io/ipfs/QmNj4f9p47zYuq16vk57btNtR2KofbTfP1Cypqc5Gi8CUj)
+
+The above links are immutable, ie they will always point to the same version of
+IPFessay, even if there is a later version available.
+
+For a link to the latest version of IPFessay, use this:
+
+[/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU](/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU)
 
 
 Contributing
@@ -36,7 +43,7 @@ If you have a local IPFS daemon, please feel free to help out by pinning
 a version of IPFessay. You can very easily do this by running:
 
 ~~~
-ipfs pin add 
+ipfs pin add QmUMCB1ECicbTLrhyJ2y77Yo99qnRjGysVDqj341e5AAyG
 ~~~
 
 Which will make you a host of IPFessay and help make it faster and more
