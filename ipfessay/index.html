@@ -17,69 +17,149 @@
 
         <link rel="stylesheet" href="assets/css/main.css">
         <link rel="stylesheet" href="assets/css/simplemde.min.css">
+
         <script src="assets/js/simplemde.min.js"></script>
-
         <script>
-            $ = function (id) { return document.getElementById(id); };
+            (function() {
 
-            function publishCallback() {
-                var url = "/ipfs/" + JSON.parse(this.responseText).Hash;
+                var IPFessay = {
 
-                $("published-link").innerHTML = 'Link: <a href="' + url + '">' + url + '</a>';
-            }
+                    initialize : function() {
 
-            function renderPage(md) {
-                return '<html><head><meta name="viewport" content="width=device-width, initial-scale=1">' +
-                       '<link rel="stylesheet" href="/ipfs/QmQ5j5PD8yroiMjCPLmVuAQC8JWAnBAfbZnThnV36Zs397"><style>' +
-                       'footer {padding: 3em 0; text-align: center; font-size: 1.4em; border-top: 1px solid #e1e1e1;}' +
-                       'a:hover { color: #222; border-bottom-color: #555}' +
-                       'a { color: #aeaeae; border-bottom: 1px dotted #aeaeae; text-decoration: none; }' +
-                       '</style></head><body><article class="typesettings golden">' +
-                       simplemde.markdown(md) +
-                       '</article><footer><a href="/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU">Publish your own essay with IPFessay</a>' +
-                       ' | <a href="https://gitlab.com/stavros/IPFessay">Gitlab</a></footer></body></html>'
-            }
+                        this.simplemde = new SimpleMDE({
+                            autofocus: true,
+                            element: document.querySelector('#text-input'),
+                            toolbar: [
+                            "bold", "italic", "heading", "|",
+                            "quote", "unordered-list", "ordered-list", "|",
+                            "link", "image", "table", "code", "|",
+                            "preview", "side-by-side", "fullscreen", "|",
+                            "guide"
+                            ],
+                        });
 
-            function publish() {
-                // Render the Markdown essay and post it to the IPFS daemon.
-                var f = new FormData();
-                simplemde.codemirror.save();
-                var md = $("text-input").value;
-                f.append("path", new Blob([renderPage(md)], {type: "text/html"}), "path");
+                        document.addEventListener('keyup', (event) => {
 
-                var req = new XMLHttpRequest();
-                req.addEventListener("load", publishCallback);
-                req.open("post", window.location.protocol + "//" + window.location.hostname + ":5001/api/v0/add?stream-channels=true");
-                req.send(f);
-            }
+                            if(!this.overlayLoading && event.keyCode == 27)
+                            this.closeOverlay();
+                        });
 
-            window.onload = function() {
-                simplemde = new SimpleMDE({
-                    autofocus: true,
-                    element: document.getElementById("text-input"),
-                    toolbar: [
-                        "bold", "italic", "heading", "|",
-                        "quote", "unordered-list", "ordered-list", "|",
-                        "link", "image", "table", "code", "|",
-                        "preview", "side-by-side", "fullscreen", "|",
-                        "guide"
-                    ],
-                });
-            }
+                        document.querySelector('#overlay button').addEventListener('click', () => {
+
+                            this.closeOverlay();
+                        });
+
+                        document.querySelector('.button-publish').addEventListener('click', () => {
+
+                            this.openOverlay();
+
+                            // Render the Markdown essay and post it to the IPFS daemon.
+                            var f = new FormData();
+
+                            this.simplemde.codemirror.save();
+
+                            var md = document.querySelector('#text-input').value;
+                            var renderedPage = this.renderPage(md);
+
+                            f.append("path", new Blob([ renderedPage ], {type: "text/html"}), "path");
+
+                            var req = new XMLHttpRequest();
+                            req.addEventListener("load", this.publishCallback);
+                            req.addEventListener("error", (error) => {
+
+                                this.closeOverlay();
+
+                                setTimeout(() => {
+
+                                    alert('There was an error communicating with the IPFS node API.' +
+                                          ' Please ensure the daemon is running, that it is in writable ' +
+                                          'mode and that you have enabled CORS.');
+
+                                }, 500);
+                            });
+                            req.open("post", window.location.protocol + "//" + window.location.hostname + ":5001/api/v0/add?stream-channels=true");
+                            req.send(f);
+                        });
+                    },
+
+                    openOverlay : function() {
+
+                        document.body.className = 'noscroll';
+
+                        document.querySelector('#overlay').style.display = 'block';
+                        document.querySelector('#overlay .loading').style.display = 'block';
+                        document.querySelector('#overlay section').style.display = 'none';
+
+                        this.overlayLoading = true;
+                    },
+
+                    closeOverlay : function() {
+
+                        document.body.className = '';
+
+                        document.querySelector('#overlay').style.display = 'none';
+                        document.querySelector('#overlay section').style.display = 'none';
+                    },
+
+                    showLink : function(url) {
+
+                        this.overlayLoading = false;
+
+                        document.querySelector('#overlay .loading').style.display = 'none';
+                        document.querySelector('#overlay section').style.display = 'block';
+
+                        document.querySelector('#overlay a#essay-link').href = url;
+                        document.querySelector('#overlay a#essay-link').innerText = url;
+
+                        document.querySelector('#overlay a#ipfsio-link').href = "https://ipfs.io" + url;
+                        document.querySelector('#overlay a#ipfsio-link').innerText = "https://ipfs.io" + url;
+                    },
+
+                    publishCallback: function() {
+
+                        var url = "/ipfs/" + JSON.parse(this.responseText).Hash;
+
+                        IPFessay.showLink(url);
+                    },
+
+                    renderPage: function(md) {
+
+                        return  '<html>' +
+                            '<head>' +
+                                '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+                                '<link rel="stylesheet" href="/ipfs/QmQ5j5PD8yroiMjCPLmVuAQC8JWAnBAfbZnThnV36Zs397">' +
+                                '<style>' +
+                                    'footer {padding: 3em 0; text-align: center; font-size: 1.4em; border-top: 1px solid #e1e1e1;}' +
+                                    'a:hover { color: #222; border-bottom-color: #555}' +
+                                    'a { color: #aeaeae; border-bottom: 1px dotted #aeaeae; text-decoration: none; }' +
+                                    '</style>' +
+                                '</head>' +
+                            '<body>' +
+                                '<article class="typesettings golden">' +
+                                this.simplemde.markdown(md) +
+                                '</article>' +
+                                '<footer><a href="/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU">Publish your own essay with IPFessay</a>' +
+                                ' | <a href="https://gitlab.com/stavros/IPFessay">Gitlab</a></footer>' +
+                                '</body>' +
+                            '</html>';
+                    }
+                };
+
+                window.IPFessay = IPFessay;
+            })();
+
+            window.addEventListener('DOMContentLoaded', () => { IPFessay.initialize(); });
         </script>
+
     </head>
     <body>
-        <div id="layout">
-            <div id="main">
-                <div class="header">
-                    <h1><img src="assets/images/logo.svg" width=40 /> IPFessay</h1>
-                    <h2>Easily publish uncensorable essays.</h2>
-                </div>
-
-                <div class="content pure-g">
-                    <div class="pure-u-1">
-                        <br />
-                        <textarea id="text-input" style="width: 100%;" oninput="this.editor.update()" rows="15" cols="60">
+        <header>
+            <img src="assets/images/logo.svg" width="100"/>
+            <h1>IPFessay</h1>
+            <h2>Easily publish uncensorable essays</h2>
+        </header>
+        <article>
+            <textarea id="text-input" style="width: 100%;" oninput="this.editor.update()" rows="15" cols="60">
 # Your essay
 
 Write your essay in this text box, using [Markdown syntax](https://daringfireball.net/projects/markdown/syntax), and use the toolbar at the top to compose or to preview how it will look.
@@ -106,19 +186,52 @@ Some plain text.
 Code blocks
     are supported too.
 ~~~
-</textarea>
-                        <button onclick="publish()" class="button-publish pure-button">Publish!</button>
-                        <span id="published-link"></span>
-                    </div>
-                </div>
+            </textarea>
 
-                <div class="footer">
-                    <p>
-                    <a href="https://gitlab.com/stavros/IPFessay">Gitlab repository</a> |
-                    <a href="https://twitter.com/stavros">@stavros</a>
-                    </p>
-                </div>
-            </div>
+            <button class="button-publish pure-button">Publish</button>
+
+        </article>
+
+        <footer>
+            <p>
+            <a href="https://gitlab.com/stavros/IPFessay">Gitlab repository</a> |
+            <a href="https://twitter.com/stavros">@stavros</a> |
+            <a href="https://twitter.com/stelabouras">@stelabouras</a>
+            </p>
+        </footer>
+
+        <div id="overlay">
+            <span class="loading"><em>Loading...</em></span>
+
+            <section>
+                <h3>Your essay link</h3>
+                <p>
+                Here's the permanent, immutable IPFS link to your essay:
+                </p>
+                <a id="essay-link" class="essayaddr" href="" target="_blank"></a>
+
+                <p>
+                You can also tell people to access it through a bridge, such as
+                the one on <a href="https://ipfs.io/">IPFS.io</a>:
+                </p>
+
+                <a id="ipfsio-link" class="essayaddr" href="" target="_blank"></a>
+                <p>
+                <strong>NOTE:</strong> This essay will only be available on IPFS
+                for as long as someone has it on their computer. Right now,
+                you're probably the only person in the world who is sharing
+                this, so you may want to send it to a few more people (and maybe
+                ask them to "pin" it) just to make distribution more resilient.
+                </p>
+                <p>
+                Alternatively, you can use services like <a
+                    href="https://pinbits.io/" target="_blank">PinBits</a> (no
+                affiliation) to "pin" your essay (i.e. pay the service to "host"
+                it for you). This costs something like a cent a year for
+                something as small as an essay.
+                </p>
+                <button class="pure-button">Close</button>
+            </section>
         </div>
 
     </body>
