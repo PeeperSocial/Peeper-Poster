@@ -16,7 +16,7 @@ body {
 
 /** Helpers **/
 
-.noscroll { 
+.noscroll {
     overflow: hidden;
 }
 
@@ -136,7 +136,7 @@ button {
 }
 
 .button-publish {
-    margin: 0 auto;    
+    margin: 0 auto;
     font-size:  150%;
 }
 
@@ -190,17 +190,19 @@ button {
     overflow: hidden;
 }
 #overlay section code {
-    display: block;
-    padding: 5px;
     background: #000;
+    border-radius: 5px;
     color: #999;
+    display: block;
     overflow: hidden;
     overflow-x: auto;
+    padding: 5px;
     white-space: nowrap;
 }
 #overlay section div.note {
     padding: 10px;
     background-color: rgb(255, 255, 209);
+    border-radius: 5px;
 }
 #overlay section div.note p:last-child {
     margin-bottom: 0;
@@ -262,7 +264,7 @@ button {
         transform: translate3d(-50%, -50%, 0) rotate3d(0,1,1, -90deg) scale3d(1,1,1);
     }
     to {
-        transform: translate3d(-50%, -50%, 0) rotate3d(0,1,1, -90deg) scale3d(1.5,1.5,1.5);    
+        transform: translate3d(-50%, -50%, 0) rotate3d(0,1,1, -90deg) scale3d(1.5,1.5,1.5);
     }
 }
 
@@ -284,7 +286,7 @@ button {
         font-size: 1.2em;
     }
     .attr {
-        position: static;    
+        position: static;
         transform: initial;
         margin-top: 30px;
         text-align: center;
