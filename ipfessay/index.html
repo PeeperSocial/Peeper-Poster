@@ -52,16 +52,10 @@
                         document.querySelector('.button-publish').addEventListener('click', () => {
 
                             this.openOverlay();
-
-                            // Render the Markdown essay and post it to the IPFS daemon.
-                            var f = new FormData();
-
                             this.simplemde.codemirror.save();
 
                             var md = document.querySelector('#text-input').value;
                             var renderedPage = this.renderPage(md);
-
-                            f.append("path", new Blob([ renderedPage ], {type: "text/html"}), "path");
 
                             var req = new XMLHttpRequest();
 
@@ -71,7 +65,8 @@
                                 var delay = Math.max(0, 1000 - req_duration_ms);
 
                                 setTimeout(() => {
-                                    this.showLink(JSON.parse(req.responseText).Hash);
+                                    var hash = req.getResponseHeader("Ipfs-Hash");
+                                    this.showLink(hash);
                                 }, delay); // Delay a bit, to show our pretty animation.
                             });
                             req.addEventListener("error", (error) => {
@@ -86,9 +81,11 @@
 
                                 }, 500);
                             });
-                            req.open("post", window.location.protocol + "//" + window.location.hostname + ":5001/api/v0/add?stream-channels=true");
                             req.sent_time = new Date();
-                            req.send(f);
+
+                            req.open("POST", "/ipfs/", true);
+                            req.setRequestHeader("Content-type", "text/html");
+                            req.send(renderedPage);
                         });
                     },
 
