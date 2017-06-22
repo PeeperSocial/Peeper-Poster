@@ -11,7 +11,7 @@ As long as IPFS is up, you'll be able to use IPFessay to publish texts to IPFS.
 To use IPFessay, you can just access it on a publicly writable gateway such as
 hardbin.com:
 
-[https://hardbin.com/ipfs/QmQUrYJ6sCSDV6duC4Db7U8NXZG3DpNrVF77XtcrbWYiJY](https://hardbin.com/ipfs/QmQUrYJ6sCSDV6duC4Db7U8NXZG3DpNrVF77XtcrbWYiJY)
+[https://hardbin.com/ipfs/QmVNMT6A3jRQf5J48UEN4uCYCs8wRZEXnfkKV7v27BTz7o](https://hardbin.com/ipfs/QmVNMT6A3jRQf5J48UEN4uCYCs8wRZEXnfkKV7v27BTz7o)
 
 To use IPFessay on your personal node, you need to do a few things, unfortunately:
 
@@ -22,7 +22,7 @@ To use IPFessay on your personal node, you need to do a few things, unfortunatel
   unfortunate necessity).
 * Visit the following link:
 
-[/ipfs/QmQUrYJ6sCSDV6duC4Db7U8NXZG3DpNrVF77XtcrbWYiJY](http://localhost:8080/ipfs/QmQUrYJ6sCSDV6duC4Db7U8NXZG3DpNrVF77XtcrbWYiJY)
+[/ipfs/QmVNMT6A3jRQf5J48UEN4uCYCs8wRZEXnfkKV7v27BTz7o](http://localhost:8080/ipfs/QmVNMT6A3jRQf5J48UEN4uCYCs8wRZEXnfkKV7v27BTz7o)
 
 This is a sample essay just so you can see what they look like:
 
@@ -49,7 +49,7 @@ If you have a local IPFS daemon, please feel free to help out by pinning
 a version of IPFessay. You can very easily do this by running:
 
 ~~~
-ipfs pin add QmQUrYJ6sCSDV6duC4Db7U8NXZG3DpNrVF77XtcrbWYiJY
+ipfs pin add QmVNMT6A3jRQf5J48UEN4uCYCs8wRZEXnfkKV7v27BTz7o
 ~~~
 
 Which will make you a host of IPFessay and help make it faster and more
