@@ -8,7 +8,12 @@ software or servers.
 
 As long as IPFS is up, you'll be able to use IPFessay to publish texts to IPFS.
 
-To use IPFessay, you need to do a few things, unfortunately:
+To use IPFessay, you can just access it on a publicly writable gateway such as
+hardbin.com:
+
+[https://hardbin.com/ipfs/QmQUrYJ6sCSDV6duC4Db7U8NXZG3DpNrVF77XtcrbWYiJY](https://hardbin.com/ipfs/QmQUrYJ6sCSDV6duC4Db7U8NXZG3DpNrVF77XtcrbWYiJY)
+
+To use IPFessay on your personal node, you need to do a few things, unfortunately:
 
 * [Install IPFS](https://ipfs.io/docs/install/) (just copy the binary somewhere
   and run it).
@@ -19,11 +24,7 @@ To use IPFessay, you need to do a few things, unfortunately:
 
 [/ipfs/QmQUrYJ6sCSDV6duC4Db7U8NXZG3DpNrVF77XtcrbWYiJY](http://localhost:8080/ipfs/QmQUrYJ6sCSDV6duC4Db7U8NXZG3DpNrVF77XtcrbWYiJY)
 
-You can see a (functional, courtesy of hardbin.com) version of IPFessay on ipfs.io:
-
-[https://hardbin.com/ipfs/QmQUrYJ6sCSDV6duC4Db7U8NXZG3DpNrVF77XtcrbWYiJY](https://hardbin.com/ipfs/QmQUrYJ6sCSDV6duC4Db7U8NXZG3DpNrVF77XtcrbWYiJY)
-
-And a sample essay:
+This is a sample essay just so you can see what they look like:
 
 [/ipfs/QmWFSuFDaApxK6DaBzEXdSXhb325fQY1hHn7Jc32DS77UK](https://ipfs.io/ipfs/QmWFSuFDaApxK6DaBzEXdSXhb325fQY1hHn7Jc32DS77UK)
 
