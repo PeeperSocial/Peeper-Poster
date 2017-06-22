@@ -35,6 +35,10 @@ For a link to the latest version of IPFessay, use this:
 
 [/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU](/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU)
 
+Or the (fully functional) hardbin.com link:
+
+[https://hardbin.com/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU](https://hardbin.com/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU)
+
 
 Contributing
 ------------
