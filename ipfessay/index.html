@@ -64,20 +64,34 @@
                             f.append("path", new Blob([ renderedPage ], {type: "text/html"}), "path");
 
                             var req = new XMLHttpRequest();
-                            req.addEventListener("load", this.publishCallback);
+
+                            req.addEventListener("load", () => {
+
+                                var req_duration_ms = new Date() - req.sent_time;
+                                var delay = Math.max(0, 1000 - req_duration_ms);
+
+                                setTimeout(() => {
+
+                                    var url = "/ipfs/" + JSON.parse(req.responseText).Hash;
+
+                                    this.showLink(url);
+
+                                }, delay); // Delay a bit, to show our pretty animation.
+                            });
                             req.addEventListener("error", (error) => {
 
                                 this.closeOverlay();
 
                                 setTimeout(() => {
 
-                                    alert('There was an error communicating with the IPFS node API.' +
-                                          ' Please ensure the daemon is running, that it is in writable ' +
+                                    alert('There was an error communicating with the IPFS node API.\n\n' +
+                                          'Please ensure the daemon is running, that it is in writable ' +
                                           'mode and that you have enabled CORS.');
 
                                 }, 500);
                             });
                             req.open("post", window.location.protocol + "//" + window.location.hostname + ":5001/api/v0/add?stream-channels=true");
+                            req.sent_time = new Date();
                             req.send(f);
                         });
                     },
@@ -115,13 +129,6 @@
                         document.querySelector('#overlay a#ipfsio-link').innerText = "https://ipfs.io" + url;
                     },
 
-                    publishCallback: function() {
-
-                        var url = "/ipfs/" + JSON.parse(this.responseText).Hash;
-
-                        IPFessay.showLink(url);
-                    },
-
                     renderPage: function(md) {
 
                         return  '<html>' +
@@ -157,6 +164,13 @@
             <img src="assets/images/logo.svg" width="100"/>
             <h1>IPFessay</h1>
             <h2>Easily publish uncensorable essays</h2>
+
+            <span class="attr">
+                <a href="https://gitlab.com/stavros/IPFessay">Gitlab repository</a> |
+                <a href="https://twitter.com/stavros">@stavros</a> |
+                <a href="https://twitter.com/stelabouras">@stelabouras</a>
+            </span>
+
         </header>
         <article>
             <textarea id="text-input" style="width: 100%;" oninput="this.editor.update()" rows="15" cols="60">
@@ -188,16 +202,10 @@ Code blocks
 ~~~
             </textarea>
 
-            <button class="button-publish pure-button">Publish</button>
-
         </article>
 
         <footer>
-            <p>
-            <a href="https://gitlab.com/stavros/IPFessay">Gitlab repository</a> |
-            <a href="https://twitter.com/stavros">@stavros</a> |
-            <a href="https://twitter.com/stelabouras">@stelabouras</a>
-            </p>
+            <button class="button-publish pure-button">Publish</button>
         </footer>
 
         <div id="overlay">
@@ -205,32 +213,40 @@ Code blocks
 
             <section>
                 <h3>Your essay link</h3>
-                <p>
-                Here's the permanent, immutable IPFS link to your essay:
-                </p>
-                <a id="essay-link" class="essayaddr" href="" target="_blank"></a>
 
-                <p>
-                You can also tell people to access it through a bridge, such as
-                the one on <a href="https://ipfs.io/">IPFS.io</a>:
-                </p>
+                <div>
+                    <p>
+                    Here's the permanent, immutable IPFS link to your essay:
+                    </p>
+                    <a id="essay-link" class="essayaddr" href="" target="_blank"></a>
 
-                <a id="ipfsio-link" class="essayaddr" href="" target="_blank"></a>
-                <p>
-                <strong>NOTE:</strong> This essay will only be available on IPFS
-                for as long as someone has it on their computer. Right now,
-                you're probably the only person in the world who is sharing
-                this, so you may want to send it to a few more people (and maybe
-                ask them to "pin" it) just to make distribution more resilient.
-                </p>
-                <p>
-                Alternatively, you can use services like <a
-                    href="https://pinbits.io/" target="_blank">PinBits</a> (no
-                affiliation) to "pin" your essay (i.e. pay the service to "host"
-                it for you). This costs something like a cent a year for
-                something as small as an essay.
-                </p>
+                    <p>
+                    You can also tell people to access it through a bridge, such as
+                    the one on <a href="https://ipfs.io/">IPFS.io</a>:
+                    </p>
+
+                    <a id="ipfsio-link" class="essayaddr" href="" target="_blank"></a>
+                </div>
+
+                <div class="note">
+                    <p>
+                    <strong>NOTE:</strong> This essay will only be available on IPFS
+                    for as long as someone has it on their computer. Right now,
+                    you're probably the only person in the world who is sharing
+                    this, so you may want to send it to a few more people (and maybe
+                    ask them to "pin" it) just to make distribution more resilient.
+                    </p>
+                    <p>
+                    Alternatively, you can use services like <a
+                        href="https://pinbits.io/" target="_blank">PinBits</a> (no
+                    affiliation) to "pin" your essay (i.e. pay the service to "host"
+                    it for you). This costs something like a cent a year for
+                    something as small as an essay.
+                    </p>
+                </div>
+
                 <button class="pure-button">Close</button>
+
             </section>
         </div>
 
