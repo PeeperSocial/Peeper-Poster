@@ -174,7 +174,8 @@ button {
     margin: 0 20px;
 }
 #overlay section div p,
-#overlay section a.essayaddr {
+#overlay section a.essayaddr,
+#overlay section code {
     margin: 0 0 1em;
 }
 #overlay section a.essayaddr {
@@ -185,6 +186,12 @@ button {
     padding: 5px;
     border-radius: 3px;
     display: block;
+}
+#overlay section code {
+    display: block;
+    padding: 5px;
+    background: #000;
+    color: #999;
 }
 #overlay section div.note {
     padding: 10px;
