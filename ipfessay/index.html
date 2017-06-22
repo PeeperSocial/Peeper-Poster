@@ -71,11 +71,7 @@
                                 var delay = Math.max(0, 1000 - req_duration_ms);
 
                                 setTimeout(() => {
-
-                                    var url = "/ipfs/" + JSON.parse(req.responseText).Hash;
-
-                                    this.showLink(url);
-
+                                    this.showLink(JSON.parse(req.responseText).Hash);
                                 }, delay); // Delay a bit, to show our pretty animation.
                             });
                             req.addEventListener("error", (error) => {
@@ -122,11 +118,13 @@
                         document.querySelector('#overlay .loading').style.display = 'none';
                         document.querySelector('#overlay section').style.display = 'block';
 
-                        document.querySelector('#overlay a#essay-link').href = url;
-                        document.querySelector('#overlay a#essay-link').innerText = url;
+                        document.querySelector('#overlay a#essay-link').href = "/ipfs" + url;
+                        document.querySelector('#overlay a#essay-link').innerText = "/ipfs" + url;
 
-                        document.querySelector('#overlay a#ipfsio-link').href = "https://ipfs.io" + url;
-                        document.querySelector('#overlay a#ipfsio-link').innerText = "https://ipfs.io" + url;
+                        document.querySelector('#overlay a#ipfsio-link').href = "https://ipfs.io/ipfs/" + url;
+                        document.querySelector('#overlay a#ipfsio-link').innerText = "https://ipfs.io/ipfs/" + url;
+
+                        document.querySelector('#overlay #pin-link').innerText = "$ ipfs pin add " + url;
                     },
 
                     renderPage: function(md) {
@@ -236,6 +234,11 @@ Code blocks
                     this, so you may want to send it to a few more people (and maybe
                     ask them to "pin" it) just to make distribution more resilient.
                     </p>
+
+                    <p>You can pin your essay like so:</p>
+
+                    <code id="pin-link"></code>
+
                     <p>
                     Alternatively, you can use services like <a
                         href="https://pinbits.io/" target="_blank">PinBits</a> (no
