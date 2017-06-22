@@ -64,7 +64,7 @@
                                 if(req.readyState != XMLHttpRequest.DONE)
                                     return;
                             
-                                if(req.status == 200) {
+                                if(req.status >= 200 && req.status < 300) {
 
                                     var req_duration_ms = new Date() - req.sent_time;
                                     var delay = Math.max(0, 1000 - req_duration_ms);
