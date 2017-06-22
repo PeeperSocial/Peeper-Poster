@@ -59,34 +59,48 @@
 
                             var req = new XMLHttpRequest();
 
-                            req.addEventListener("load", () => {
+                            req.onreadystatechange = () => {
 
-                                var req_duration_ms = new Date() - req.sent_time;
-                                var delay = Math.max(0, 1000 - req_duration_ms);
+                                if(req.readyState != XMLHttpRequest.DONE)
+                                    return;
+                            
+                                if(req.status == 200) {
 
-                                setTimeout(() => {
-                                    var hash = req.getResponseHeader("Ipfs-Hash");
-                                    this.showLink(hash);
-                                }, delay); // Delay a bit, to show our pretty animation.
-                            });
-                            req.addEventListener("error", (error) => {
+                                    var req_duration_ms = new Date() - req.sent_time;
+                                    var delay = Math.max(0, 1000 - req_duration_ms);
 
-                                this.closeOverlay();
+                                    setTimeout(() => {
 
-                                setTimeout(() => {
+                                        var hash = req.getResponseHeader("Ipfs-Hash");
+                                        this.showLink(hash);
+                                        
+                                    }, delay); // Delay a bit, to show our pretty animation.
+                                }
+                                else
+                                    this.showError();
+                            };
 
-                                    alert('There was an error communicating with the IPFS node API.\n\n' +
-                                          'Please ensure the daemon is running, that it is in writable ' +
-                                          'mode and that you have enabled CORS.');
+                            req.onerror = (error) => { this.showError(); };
 
-                                }, 500);
-                            });
                             req.sent_time = new Date();
 
                             req.open("POST", "/ipfs/", true);
                             req.setRequestHeader("Content-type", "text/html");
                             req.send(renderedPage);
                         });
+                    },
+
+                    showError : function() {
+
+                        this.closeOverlay();
+
+                        setTimeout(() => {
+
+                            alert('There was an error communicating with the IPFS node API.\n\n' +
+                                  'Please ensure the daemon is running, that it is in writable ' +
+                                  'mode and that you have enabled CORS.');
+
+                        }, 500);
                     },
 
                     openOverlay : function() {
