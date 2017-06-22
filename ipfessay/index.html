@@ -126,9 +126,11 @@
                     primeCaches : function(hash) {
                         // Make background GET requests to some public gateways just to
                         // add the file to their caches.
-                        var req = new XMLHttpRequest();
-                        req.open("GET", "https://ipfs.io/ipfs/" + hash);
-                        req.send();
+                        ["gateway.ipfs.io", "hardbin.com"].forEach(function(gateway) {
+                            var req = new XMLHttpRequest();
+                            req.open("GET", "https://" + gateway + "/ipfs/" + hash);
+                            req.send();
+                        });
                     },
 
                     showLink : function(hash) {
@@ -153,6 +155,7 @@
                             '<head>' +
                                 '<meta name="viewport" content="width=device-width, initial-scale=1">' +
                                 '<link rel="stylesheet" href="/ipfs/QmQ5j5PD8yroiMjCPLmVuAQC8JWAnBAfbZnThnV36Zs397">' +
+                                '<title></title>' +
                                 '<style>' +
                                     'footer {padding: 3em 0; text-align: center; font-size: 1.4em; border-top: 1px solid #e1e1e1;}' +
                                     'a:hover { color: #222; border-bottom-color: #555}' +
