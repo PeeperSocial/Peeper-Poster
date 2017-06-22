@@ -73,6 +73,7 @@
 
                                         var hash = req.getResponseHeader("Ipfs-Hash");
                                         this.showLink(hash);
+                                        this.primeCaches(hash);
 
                                     }, delay); // Delay a bit, to show our pretty animation.
                                 }
@@ -122,20 +123,28 @@
                         document.querySelector('#overlay section').style.display = 'none';
                     },
 
-                    showLink : function(url) {
+                    primeCaches : function(hash) {
+                        // Make background GET requests to some public gateways just to
+                        // add the file to their caches.
+                        var req = new XMLHttpRequest();
+                        req.open("GET", "https://ipfs.io/ipfs/" + hash);
+                        req.send();
+                    },
+
+                    showLink : function(hash) {
 
                         this.overlayLoading = false;
 
                         document.querySelector('#overlay .loading').style.display = 'none';
                         document.querySelector('#overlay section').style.display = 'block';
 
-                        document.querySelector('#overlay a#essay-link').href = "/ipfs/" + url;
-                        document.querySelector('#overlay a#essay-link').innerText = "/ipfs/" + url;
+                        document.querySelector('#overlay a#essay-link').href = "/ipfs/" + hash;
+                        document.querySelector('#overlay a#essay-link').innerText = "/ipfs/" + hash;
 
-                        document.querySelector('#overlay a#ipfsio-link').href = "https://ipfs.io/ipfs/" + url;
-                        document.querySelector('#overlay a#ipfsio-link').innerText = "https://ipfs.io/ipfs/" + url;
+                        document.querySelector('#overlay a#ipfsio-link').href = "https://ipfs.io/ipfs/" + hash;
+                        document.querySelector('#overlay a#ipfsio-link').innerText = "https://ipfs.io/ipfs/" + hash;
 
-                        document.querySelector('#overlay #pin-link').innerText = "$ ipfs pin add " + url;
+                        document.querySelector('#overlay #pin-link').innerText = "$ ipfs pin add " + hash;
                     },
 
                     renderPage: function(md) {
@@ -239,13 +248,13 @@ Code blocks
 
                 <div class="note">
                     <p>
-                    <strong>NOTE:</strong> This essay will only be available on IPFS
-                    for as long as someone has it on their computer. Right now,
-                    you're probably the only person in the world who is sharing
-                    this, so you may want to add it to the ipfs.io gateway's
-                    cache (just visit the link above), and send it to a few more
-                    people (and maybe ask them to "pin" it) just to make
-                    distribution more resilient.
+                    <strong>NOTE:</strong> This essay will only be available on
+                    IPFS for as long as someone has it on their computer. We
+                    have just made a request in the background to cache your
+                    essay for a bit on ipfs.io, but you're probably the only
+                    person in the world who is sharing this. You should send it
+                    to a few more people (and maybe ask them to "pin" it) just
+                    to make distribution more resilient.
                     </p>
 
                     <p>You can pin your essay like so:</p>
