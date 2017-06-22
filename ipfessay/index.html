@@ -26,9 +26,11 @@
 
                     initialize : function() {
 
+                        var textArea = document.querySelector('#text-input');
+
                         this.simplemde = new SimpleMDE({
                             autofocus: true,
-                            element: document.querySelector('#text-input'),
+                            element: textArea,
                             toolbar: [
                             "bold", "italic", "heading", "|",
                             "quote", "unordered-list", "ordered-list", "|",
@@ -38,10 +40,17 @@
                             ],
                         });
 
+                        document.addEventListener('keydown', (event) => {
+
+                            if ((event.ctrlKey || event.metaKey) && 
+                                (event.keyCode == 13 || event.keyCode == 10))
+                                this.publishEssay();                        
+                        });
+
                         document.addEventListener('keyup', (event) => {
 
                             if(!this.overlayLoading && event.keyCode == 27)
-                            this.closeOverlay();
+                                this.closeOverlay();
                         });
 
                         document.querySelector('#overlay button').addEventListener('click', () => {
@@ -51,44 +60,49 @@
 
                         document.querySelector('.button-publish').addEventListener('click', () => {
 
-                            this.openOverlay();
-                            this.simplemde.codemirror.save();
-
-                            var md = document.querySelector('#text-input').value;
-                            var renderedPage = this.renderPage(md);
-
-                            var req = new XMLHttpRequest();
-
-                            req.onreadystatechange = () => {
-
-                                if(req.readyState != XMLHttpRequest.DONE)
-                                    return;
-
-                                if(req.status >= 200 && req.status < 300) {
-
-                                    var req_duration_ms = new Date() - req.sent_time;
-                                    var delay = Math.max(0, 1000 - req_duration_ms);
-
-                                    setTimeout(() => {
-
-                                        var hash = req.getResponseHeader("Ipfs-Hash");
-                                        this.showLink(hash);
-                                        this.primeCaches(hash);
-
-                                    }, delay); // Delay a bit, to show our pretty animation.
-                                }
-                                else
-                                    this.showError();
-                            };
-
-                            req.onerror = (error) => { this.showError(); };
-
-                            req.sent_time = new Date();
-
-                            req.open("POST", "/ipfs/", true);
-                            req.setRequestHeader("Content-type", "text/html");
-                            req.send(renderedPage);
+                            this.publishEssay();
                         });
+                    },
+
+                    publishEssay : function() {
+
+                        this.openOverlay();
+                        this.simplemde.codemirror.save();
+
+                        var md = document.querySelector('#text-input').value;
+                        var renderedPage = this.renderPage(md);
+
+                        var req = new XMLHttpRequest();
+
+                        req.onreadystatechange = () => {
+
+                            if(req.readyState != XMLHttpRequest.DONE)
+                                return;
+
+                            if(req.status >= 200 && req.status < 300) {
+
+                                var req_duration_ms = new Date() - req.sent_time;
+                                var delay = Math.max(0, 1000 - req_duration_ms);
+
+                                setTimeout(() => {
+
+                                    var hash = req.getResponseHeader("Ipfs-Hash");
+                                    this.showLink(hash);
+                                    this.primeCaches(hash);
+
+                                }, delay); // Delay a bit, to show our pretty animation.
+                            }
+                            else
+                                this.showError();
+                        };
+
+                        req.onerror = (error) => { this.showError(); };
+
+                        req.sent_time = new Date();
+
+                        req.open("POST", "/ipfs/", true);
+                        req.setRequestHeader("Content-type", "text/html");
+                        req.send(renderedPage);
                     },
 
                     showError : function() {
