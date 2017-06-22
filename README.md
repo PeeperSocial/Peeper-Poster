@@ -22,7 +22,7 @@ To use IPFessay on your personal node, you need to do a few things, unfortunatel
   unfortunate necessity).
 * Visit the following link:
 
-[/ipfs/QmdbBnWPzuGvafgvPEQqC3JMafTN26pbzgsCpLHJuPh9hd](http://localhost:8080/ipfs/QmdbBnWPzuGvafgvPEQqC3JMafTN26pbzgsCpLHJuPh9hd)
+[http://localhost:8080/ipfs/QmdbBnWPzuGvafgvPEQqC3JMafTN26pbzgsCpLHJuPh9hd](http://localhost:8080/ipfs/QmdbBnWPzuGvafgvPEQqC3JMafTN26pbzgsCpLHJuPh9hd)
 
 This is a sample essay just so you can see what they look like:
 
@@ -31,7 +31,7 @@ This is a sample essay just so you can see what they look like:
 The above links are immutable, ie they will always point to the same version of
 IPFessay, even if there is a later version available.
 
-For a link to the latest version of IPFessay, use this:
+For an always-updated link to the latest version of IPFessay, use this:
 
 [/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU](/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU)
 
