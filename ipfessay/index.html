@@ -63,7 +63,7 @@
 
                                 if(req.readyState != XMLHttpRequest.DONE)
                                     return;
-                            
+
                                 if(req.status >= 200 && req.status < 300) {
 
                                     var req_duration_ms = new Date() - req.sent_time;
@@ -73,7 +73,7 @@
 
                                         var hash = req.getResponseHeader("Ipfs-Hash");
                                         this.showLink(hash);
-                                        
+
                                     }, delay); // Delay a bit, to show our pretty animation.
                                 }
                                 else
@@ -242,8 +242,10 @@ Code blocks
                     <strong>NOTE:</strong> This essay will only be available on IPFS
                     for as long as someone has it on their computer. Right now,
                     you're probably the only person in the world who is sharing
-                    this, so you may want to send it to a few more people (and maybe
-                    ask them to "pin" it) just to make distribution more resilient.
+                    this, so you may want to add it to the ipfs.io gateway's
+                    cache (just visit the link above), and send it to a few more
+                    people (and maybe ask them to "pin" it) just to make
+                    distribution more resilient.
                     </p>
 
                     <p>You can pin your essay like so:</p>
