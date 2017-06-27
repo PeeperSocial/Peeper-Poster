@@ -42,9 +42,9 @@
 
                         document.addEventListener('keydown', (event) => {
 
-                            if ((event.ctrlKey || event.metaKey) && 
+                            if ((event.ctrlKey || event.metaKey) &&
                                 (event.keyCode == 13 || event.keyCode == 10))
-                                this.publishEssay();                        
+                                this.publishEssay();
                         });
 
                         document.addEventListener('keyup', (event) => {
@@ -140,7 +140,11 @@
                     primeCaches : function(hash) {
                         // Make background GET requests to some public gateways just to
                         // add the file to their caches.
-                        ["gateway.ipfs.io", "hardbin.com"].forEach(function(gateway) {
+                        [
+                            "gateway.ipfs.io",
+                            "hardbin.com",
+                            "ipfs.stavros.io"
+                        ].forEach(function(gateway) {
                             var req = new XMLHttpRequest();
                             req.open("GET", "https://" + gateway + "/ipfs/" + hash);
                             req.send();
