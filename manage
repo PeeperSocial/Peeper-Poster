@@ -16,7 +16,8 @@ def cli():
 
 
 @cli.command()
-def release():
+@click.option("--no-ipns", is_flag=True, help="Link to IPNS.")
+def release(no_ipns):
     """Prepare a release."""
     readme = open("README.md").read()
     child = subprocess.Popen(["ipfs", "add", "-Q", "-r", "ipfessay"], stdout=subprocess.PIPE)
@@ -25,6 +26,10 @@ def release():
     readme = re.sub(r"(ipfs pin add) [a-zA-Z0-9]+", r"\1 %s" % new_hash, readme)
     open("README.md", "w").write(readme)
     print("Released %s" % new_hash)
+
+    if no_ipns:
+        return
+
     child = subprocess.Popen(["ipfs", "name", "publish", "--key=ipfessay", new_hash], stdout=subprocess.PIPE)
     ipns_out = child.stdout.read().decode("utf8").strip()
     ipns = re.search("(\w+)+\:", ipns_out).groups(1)[0]
