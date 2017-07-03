@@ -9,9 +9,9 @@ software or servers.
 As long as IPFS is up, you'll be able to use IPFessay to publish texts to IPFS.
 
 To use IPFessay, you can just access it on a publicly writable gateway such as
-hardbin.com:
+eternum.io:
 
-https://hardbin.com/ipfs/QmY7KBnjCAUtY88ngek8UDitPjVz3Viqhu8e1MJhTNRtAY
+https://eternum.io/ipfs/QmT4Akk6dVdwHFcPUbN4cHL3Mny8HD1qT2vCHaV4VW264G
 
 To use IPFessay on your personal node, you need to do a few things, unfortunately:
 
@@ -22,7 +22,7 @@ To use IPFessay on your personal node, you need to do a few things, unfortunatel
   unfortunate necessity).
 * Visit the following link:
 
-http://localhost:8080/ipfs/QmY7KBnjCAUtY88ngek8UDitPjVz3Viqhu8e1MJhTNRtAY
+http://localhost:8080/ipfs/QmT4Akk6dVdwHFcPUbN4cHL3Mny8HD1qT2vCHaV4VW264G
 
 This is a sample essay just so you can see what they look like:
 
@@ -35,9 +35,9 @@ For an always-updated link to the latest version of IPFessay, use this:
 
 [/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU](/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU)
 
-Or the (fully functional) hardbin.com link:
+Or the (fully functional) eternum.io link:
 
-https://hardbin.com/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU
+https://eternum.io/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU
 
 
 Contributing
@@ -49,7 +49,7 @@ If you have a local IPFS daemon, please feel free to help out by pinning
 a version of IPFessay. You can very easily do this by running:
 
 ~~~
-ipfs pin add QmY7KBnjCAUtY88ngek8UDitPjVz3Viqhu8e1MJhTNRtAY
+ipfs pin add QmT4Akk6dVdwHFcPUbN4cHL3Mny8HD1qT2vCHaV4VW264G
 ~~~
 
 Which will make you a host of IPFessay and help make it faster and more

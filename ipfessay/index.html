@@ -143,7 +143,7 @@
                         [
                             "gateway.ipfs.io",
                             "hardbin.com",
-                            "ipfs.stavros.io"
+                            "www.eternum.io"
                         ].forEach(function(gateway) {
                             var req = new XMLHttpRequest();
                             req.open("GET", "https://" + gateway + "/ipfs/" + hash);
@@ -161,8 +161,8 @@
                         document.querySelector('#overlay a#essay-link').href = "/ipfs/" + hash;
                         document.querySelector('#overlay a#essay-link').innerText = "/ipfs/" + hash;
 
-                        document.querySelector('#overlay a#ipfsio-link').href = "https://ipfs.io/ipfs/" + hash;
-                        document.querySelector('#overlay a#ipfsio-link').innerText = "https://ipfs.io/ipfs/" + hash;
+                        document.querySelector('#overlay a#ipfsio-link').href = "https://www.eternum.io/ipfs/" + hash;
+                        document.querySelector('#overlay a#ipfsio-link').innerText = "https://www.eternum.io/ipfs/" + hash;
 
                         document.querySelector('#overlay #pin-link').innerText = "$ ipfs pin add " + hash;
                     },
@@ -261,7 +261,7 @@ Code blocks
 
                     <p>
                     You can also tell people to access it through a bridge, such as
-                    the one on <a href="https://ipfs.io/">IPFS.io</a>:
+                    the one on <a href="https://www.eternum.io/">Eternum.io</a>:
                     </p>
 
                     <a id="ipfsio-link" class="essayaddr" href="" target="_blank"></a>
@@ -272,7 +272,7 @@ Code blocks
                     <strong>NOTE:</strong> This essay will only be available on
                     IPFS for as long as someone has it on their computer. We
                     have just made a request in the background to cache your
-                    essay for a bit on ipfs.io, but you're probably the only
+                    essay for a bit on eternum.io, but you're probably the only
                     person in the world who is sharing this. You should send it
                     to a few more people (and maybe ask them to "pin" it) just
                     to make distribution more resilient.
