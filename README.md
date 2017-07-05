@@ -11,7 +11,7 @@ As long as IPFS is up, you'll be able to use IPFessay to publish texts to IPFS.
 To use IPFessay, you can just access it on a publicly writable gateway such as
 eternum.io:
 
-https://eternum.io/ipfs/QmQuGpvoHn2rsXhFHiNpi9gmpbP8SbUuzHt3CtpkttqbPs
+https://eternum.io/ipfs/QmRdEYQzCgCmDRiB6ja2sobHNojepz4rSy6xLhvXch8V4g
 
 To use IPFessay on your personal node, you need to do a few things, unfortunately:
 
@@ -22,7 +22,7 @@ To use IPFessay on your personal node, you need to do a few things, unfortunatel
   unfortunate necessity).
 * Visit the following link:
 
-http://localhost:8080/ipfs/QmQuGpvoHn2rsXhFHiNpi9gmpbP8SbUuzHt3CtpkttqbPs
+http://localhost:8080/ipfs/QmRdEYQzCgCmDRiB6ja2sobHNojepz4rSy6xLhvXch8V4g
 
 This is a sample essay just so you can see what they look like:
 
@@ -49,7 +49,7 @@ If you have a local IPFS daemon, please feel free to help out by pinning
 a version of IPFessay. You can very easily do this by running:
 
 ~~~
-ipfs pin add QmQuGpvoHn2rsXhFHiNpi9gmpbP8SbUuzHt3CtpkttqbPs
+ipfs pin add QmRdEYQzCgCmDRiB6ja2sobHNojepz4rSy6xLhvXch8V4g
 ~~~
 
 Which will make you a host of IPFessay and help make it faster and more
