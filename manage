@@ -34,7 +34,7 @@ def release(no_ipns, eternum_key):
         r = requests.post(
             "https://www.eternum.io/api/pin/",
             headers={"Authorization": "Token %s" % eternum_key},
-            data={"hash": new_hash, "name": "IPFEssay %s" % datetime.date.today().strftime("%Y-%m-%d")}
+            data={"hash": new_hash, "name": "IPFEssay %s" % datetime.datetime.now().strftime("%Y-%m-%d %H:%M")}
         )
         if 200 <= r.status_code < 300:
             print("Pinned on Eternum.")
