@@ -164,6 +164,8 @@
                         document.querySelector('#overlay a#ipfsio-link').href = "https://www.eternum.io/ipfs/" + hash;
                         document.querySelector('#overlay a#ipfsio-link').innerText = "https://www.eternum.io/ipfs/" + hash;
 
+                        document.querySelector('#overlay #essay-pin').innerHTML = '<a href="https://www.eternum.io/pin/' + hash + '/?name=IPFessay" target="_blank">https://www.eternum.io/pin/' + hash + '/</a>';
+
                         document.querySelector('#overlay #pin-link').innerText = "$ ipfs pin add " + hash;
                     },
 
@@ -287,8 +289,9 @@ Code blocks
                         href="https://www.eternum.io/" target="_blank">Eternum</a>
                     to "pin" your essay (i.e. pay the service to "host"
                     it for you). This costs something like a cent a year for
-                    something as small as an essay.
+                    something as small as an essay:
                     </p>
+                    <p id="essay-pin"></p>
                 </div>
 
                 <button class="pure-button">Close</button>
