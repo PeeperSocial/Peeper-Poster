@@ -25,6 +25,9 @@ def release(no_ipns, eternum_key):
     readme = open("README.md").read()
     child = subprocess.Popen(["ipfs", "add", "-Q", "-r", "ipfessay"], stdout=subprocess.PIPE)
     new_hash = child.stdout.read().decode("utf8").strip()
+    if not new_hash:
+        print("There was an error releasing.")
+        return
     readme = re.sub(r"/ipfs/[a-zA-Z0-9]*?\n", r"/ipfs/%s\n" % new_hash, readme, count=2)
     readme = re.sub(r"(ipfs pin add) [a-zA-Z0-9]+", r"\1 %s" % new_hash, readme)
     open("README.md", "w").write(readme)
