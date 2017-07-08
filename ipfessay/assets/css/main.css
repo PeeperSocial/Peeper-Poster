@@ -221,8 +221,11 @@ button {
     margin: 20px auto 0;
     display: block;
 }
-
-
+#overlay #essay-pin {
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 #overlay .loading {
     position: absolute;
     left: 50%;
