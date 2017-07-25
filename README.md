@@ -21,16 +21,16 @@ Using IPFessay (long version)
 To use IPFessay, you can just access it on a publicly writable gateway such as
 eternum.io:
 
-https://eternum.io/ipfs/QmRWviGzs7cMeq7T4Rzt2S1aJtoRBbDvdQavypTJUcfMvc
+https://eternum.io/ipfs/QmT2XQLh8BTTbzkdeAvpcJoT4Ebwu3bX3poTAQdoQPAD34
 
-To use IPFessay on your personal node, you need to do a few things, unfortunately:
+To use IPFessay on your personal node, you need to do a few things:
 
 * [Install IPFS](https://ipfs.io/docs/install/) (just copy the binary somewhere
   and run it).
 * Launch the daemon in writable mode (`ipfs daemon --writable`).
 * Visit the following link:
 
-http://localhost:8080/ipfs/QmRWviGzs7cMeq7T4Rzt2S1aJtoRBbDvdQavypTJUcfMvc
+http://localhost:8080/ipfs/QmT2XQLh8BTTbzkdeAvpcJoT4Ebwu3bX3poTAQdoQPAD34
 
 This is a sample essay just so you can see what they look like:
 
@@ -57,7 +57,7 @@ If you have a local IPFS daemon, please feel free to help out by pinning
 a version of IPFessay. You can very easily do this by running:
 
 ~~~
-ipfs pin add QmRWviGzs7cMeq7T4Rzt2S1aJtoRBbDvdQavypTJUcfMvc
+ipfs pin add QmT2XQLh8BTTbzkdeAvpcJoT4Ebwu3bX3poTAQdoQPAD34
 ~~~
 
 Which will make you a host of IPFessay and help make it faster and more
