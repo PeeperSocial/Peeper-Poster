@@ -370,7 +370,19 @@
 
                         var md = document.querySelector('#text-input').value;
 
-                        var renderedPage = this.renderPage(md);
+                        // Get the generated HTML
+                        var mdHTML = this.simplemde.options.previewRender(md);
+
+                        // Create a temp element
+                        var div = document.createElement('div');
+                        div.innerHTML = mdHTML;
+
+                        var title = undefined;
+
+                        if(div.children.length > 0 && div.children[0].tagName.match("^[hH][123]$"))
+                            title = div.children[0].innerText;
+
+                        var renderedPage = this.renderPage(mdHTML, title);
 
                         var addedFiles = [];
 
@@ -396,7 +408,7 @@
                             addedFiles,
                             (hash) => {
 
-                                this.showLink(hash);
+                                this.showLink(hash, title);
                                 this.primeCaches(hash);
                             });
                     },
@@ -447,7 +459,12 @@
                         });
                     },
 
-                    showLink : function(hash) {
+                    showLink : function(hash, title) {
+
+                        var pinName = 'IPFessay';
+
+                        if(title)
+                            pinName = title;
 
                         this.overlayLoading = false;
 
@@ -460,18 +477,23 @@
                         document.querySelector('#overlay a#ipfsio-link').href = "https://www.eternum.io/ipfs/" + hash;
                         document.querySelector('#overlay a#ipfsio-link').innerText = "https://www.eternum.io/ipfs/" + hash;
 
-                        document.querySelector('#overlay #essay-pin').innerHTML = '<a href="https://www.eternum.io/pin/' + hash + '/?name=IPFessay" target="_blank">https://www.eternum.io/pin/' + hash + '/</a>';
+                        document.querySelector('#overlay #essay-pin').innerHTML = '<a href="https://www.eternum.io/pin/' + hash + '/?name=' + pinName + '" target="_blank">https://www.eternum.io/pin/' + hash + '/</a>';
 
                         document.querySelector('#overlay #pin-link').innerText = "$ ipfs pin add " + hash;
                     },
 
-                    renderPage: function(md) {
+                    renderPage: function(mdHTML, title) {
+
+                        var pageTitle = 'An IPFessay';
+
+                        if(title)
+                            pageTitle = title;
 
                         return  '<html>' +
                             '<head>' +
                                 '<meta name="viewport" content="width=device-width, initial-scale=1">' +
                                 '<link rel="stylesheet" href="/ipfs/QmSMwjABWVBsnS3Gha3xmjb5zKYndvFrS74iCAwykQCqcY/typesettings-1.2-min.css">' +
-                                '<title>An IPFessay</title>' +
+                                '<title>' + pageTitle + '</title>' +
                                 '<style>' +
                                     'footer {padding: 3em 0; text-align: center; font-size: 1.4em; border-top: 1px solid #e1e1e1;}' +
                                     'a:hover { color: #222; border-bottom-color: #555; }' +
@@ -482,7 +504,7 @@
                                 '</head>' +
                             '<body>' +
                                 '<article class="typesettings golden">' +
-                                this.simplemde.markdown(md) +
+                                mdHTML +
                                 '</article>' +
                                 '<footer><a href="/ipns/QmSWnBwMKZ28tcgMFdihD8XS7p6QzdRSGf71cCybaETSsU">Publish your own essay with IPFessay</a>' +
                                 ' | <a href="https://gitlab.com/stavros/IPFessay">Gitlab</a></footer>' +
