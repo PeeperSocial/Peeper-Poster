@@ -18,9 +18,9 @@ def cli():
 
 
 @cli.command()
-@click.option("--no-ipns", is_flag=True, help="Link to IPNS.")
+@click.option("--ipns", is_flag=True, help="Link to IPNS.")
 @click.option("-e", "--eternum-key", help="The Eternum key to use for pinning.")
-def release(no_ipns, eternum_key):
+def release(ipns, eternum_key):
     """Prepare a release."""
     readme = open("README.md").read()
     child = subprocess.Popen(["ipfs", "add", "-Q", "-r", "ipfessay"], stdout=subprocess.PIPE)
@@ -45,11 +45,11 @@ def release(no_ipns, eternum_key):
             errors = [x[0] for x in r.json().values()]
             print("There was an error pinning on Eternum: %s" % ", ".join(errors))
 
-    if not no_ipns:
+    if ipns:
         child = subprocess.Popen(["ipfs", "name", "publish", "--key=ipfessay", new_hash], stdout=subprocess.PIPE)
         ipns_out = child.stdout.read().decode("utf8").strip()
-        ipns = re.search("(\w+)+\:", ipns_out).groups(1)[0]
-        print("Linked IPNS name: %s" % ipns)
+        ipns_name = re.search("(\w+)+\:", ipns_out).groups(1)[0]
+        print("Linked IPNS name: %s" % ipns_name)
 
 
 def main():
