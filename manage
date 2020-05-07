@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 import datetime
 import re
 import subprocess
@@ -10,8 +9,7 @@ import requests
 
 @click.group(context_settings={"help_option_names": ["-h", "--help"]})
 @click.version_option(
-    prog_name="manage",
-    message="%(prog)s %(version)s: Manage all the things."
+    prog_name="manage", message="%(prog)s %(version)s: Manage all the things."
 )
 def cli():
     pass
@@ -23,7 +21,9 @@ def cli():
 def release(ipns, eternum_key):
     """Prepare a release."""
     readme = open("README.md").read()
-    child = subprocess.Popen(["ipfs", "add", "-Q", "-r", "ipfessay"], stdout=subprocess.PIPE)
+    child = subprocess.Popen(
+        ["ipfs", "add", "-Q", "-r", "ipfessay"], stdout=subprocess.PIPE
+    )
     new_hash = child.stdout.read().decode("utf8").strip()
     if not new_hash:
         print("There was an error releasing.")
@@ -37,7 +37,11 @@ def release(ipns, eternum_key):
         r = requests.post(
             "https://www.eternum.io/api/pin/",
             headers={"Authorization": "Token %s" % eternum_key},
-            data={"hash": new_hash, "name": "IPFEssay %s" % datetime.datetime.now().strftime("%Y-%m-%d %H:%M")}
+            data={
+                "hash": new_hash,
+                "name": "IPFEssay %s"
+                % datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
+            },
         )
         if 200 <= r.status_code < 300:
             print("Pinned on Eternum.")
@@ -46,7 +50,10 @@ def release(ipns, eternum_key):
             print("There was an error pinning on Eternum: %s" % ", ".join(errors))
 
     if ipns:
-        child = subprocess.Popen(["ipfs", "name", "publish", "--key=ipfessay", new_hash], stdout=subprocess.PIPE)
+        child = subprocess.Popen(
+            ["ipfs", "name", "publish", "--key=ipfessay", new_hash],
+            stdout=subprocess.PIPE,
+        )
         ipns_out = child.stdout.read().decode("utf8").strip()
         ipns_name = re.search("(\w+)+\:", ipns_out).groups(1)[0]
         print("Linked IPNS name: %s" % ipns_name)
